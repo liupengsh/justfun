@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.justfun.dao.UserDao">
+  
+    <select id="findUserById" resultType="com.justfun.model.User"  parameterType="java.lang.Long">  
+        SELECT
+			u.id id,
+			u.user_name userName,
+			u.`password` password,
+			u.age age
+		FROM
+			t_user u
+		WHERE
+			u.id = #{id}
+    </select>
+    
+</mapper>
