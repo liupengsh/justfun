@@ -117,6 +117,11 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.5</version>
 		</dependency>
+      	<dependency>
+		  <groupId>org.freemarker</groupId>
+		  <artifactId>freemarker</artifactId>
+		  <version>2.3.22</version>
+	  	</dependency>
 		<!-- 日志文件管理包 -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -160,6 +165,36 @@
 			<artifactId>commons-lang</artifactId>
 			<version>2.6</version>
 		</dependency>
+      	<dependency>
+          <groupId>commons-collections</groupId>
+          <artifactId>commons-collections</artifactId>
+          <version>3.2.1</version>
+      	</dependency>
+		<dependency>
+          <groupId>org.apache.shiro</groupId>
+          <artifactId>shiro-core</artifactId>
+          <version>1.2.2</version>
+      	</dependency>
+      	<dependency>
+          <groupId>org.apache.shiro</groupId>
+          <artifactId>shiro-ehcache</artifactId>
+          <version>1.2.2</version>
+      	</dependency>
+      	<dependency>
+          <groupId>org.apache.shiro</groupId>
+          <artifactId>shiro-web</artifactId>
+          <version>1.2.2</version>
+      	</dependency>
+      	<dependency>
+          <groupId>org.apache.shiro</groupId>
+          <artifactId>shiro-quartz</artifactId>
+          <version>1.2.2</version>
+      	</dependency>
+      	<dependency>
+          <groupId>org.apache.shiro</groupId>
+          <artifactId>shiro-spring</artifactId>
+          <version>1.2.2</version>
+      	</dependency>
 	</dependencies>
 	
 	<build>

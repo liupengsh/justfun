@@ -6,4 +6,6 @@ public interface UserDao {
 	
 	public User findUserById(Long userId);
 	
+	public User findUserByUserName(String userName);
+	
 }

@@ -19,4 +19,9 @@ public class UserService implements IUserService {
 		return userDao.findUserById(userId);
 	}
 
+	@Override
+	public User findUserByUserName(String userName) {
+		return userDao.findUserByUserName(userName);
+	}
+
 }
