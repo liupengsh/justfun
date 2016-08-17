@@ -25,17 +25,11 @@ public class UserRealm extends AuthorizingRealm {
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-
         String userName = (String)token.getPrincipal();
         User user = userService.findUserByUserName(userName);
-
         if(user == null) {
             throw new UnknownAccountException();//没找到帐号
         }
-
-        System.out.println(user.getUserName());
-        
-        //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user.getUserName(), //用户名
                 user.getPassword(), //密码

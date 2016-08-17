@@ -19,7 +19,6 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
-	
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
@@ -45,7 +44,6 @@
             <param-value>true</param-value>
         </init-param>
     </filter>
-
     <filter-mapping>
         <filter-name>shiroFilter</filter-name>
         <url-pattern>/*</url-pattern>
@@ -70,9 +68,4 @@
 		<servlet-name>justfun</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-	<welcome-file-list>
-		<welcome-file>/index.htm</welcome-file>
-	</welcome-file-list>
-
 </web-app>
