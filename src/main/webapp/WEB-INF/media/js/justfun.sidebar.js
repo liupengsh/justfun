@@ -6,7 +6,9 @@
       $this.find('li > a').each(function(i,item) {
         var a = $(this);
         var idx = i + 1;
-        a.data("tabIndex", idx);
+        var url = a.attr("href");
+        a.data("url", url);
+        a.attr("href", "#");
         a.attr("id", "a_" + idx);
         a.click(function () {
             active(a, opts);

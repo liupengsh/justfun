@@ -8,7 +8,27 @@
 	<script src="${BASEPATH}/media/js/justfun.sidebar.js" type="text/javascript"></script>
 	<script>
 		jQuery(document).ready(function() {
-			$('#jfSidebar').jfSidebar();
+			$('#jfSidebar').jfSidebar({clickEvent:addTabMenu});
 		});
+        function addTabMenu(a) {
+        	if(!a) {
+        		return;
+        	}
+        	var title = a.text().replace(/(\s+)/ig,'');
+        	var src = a.data("url");
+            var tabsContainer = top.$("#tabsContainer");
+			var opts = {
+				title : title,
+				closable : true,
+				content : $.formatString('<iframe src="{0}" allowTransparency="true" style="border:0;width:100%;height:99%;" frameBorder="0"></iframe>', src),
+				border : false,
+				fit : true
+			};
+			if (tabsContainer.tabs('exists', opts.title)) {
+				tabsContainer.tabs('select', opts.title);
+			} else {
+				tabsContainer.tabs('add', opts);
+			}
+        }
 	</script>
 </#macro>
