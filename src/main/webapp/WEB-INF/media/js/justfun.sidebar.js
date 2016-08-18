@@ -9,10 +9,10 @@
         a.data("tabIndex", idx);
         a.attr("id", "a_" + idx);
         a.click(function () {
-            active(a, false);
+            active(a, opts);
             return false;
         }).dblclick(function() {
-            active(a, true);
+            active(a, opts);
             return false;
         });
       });
@@ -48,7 +48,7 @@
   $.fn.jfSidebar.defaults = {
     clickEvent: function(a) {
       if (a) {
-        alert(a.title);
+        alert(a.text().replace(/(\s+)/ig,''));
       } else {
         alert("no title");
       }

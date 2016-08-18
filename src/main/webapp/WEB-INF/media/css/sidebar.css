@@ -1,6 +1,3 @@
-/***
-Page sidebar
-***/
 .page-sidebar {
   background-color: #3d3d3d;
   width: 180px;
@@ -80,8 +77,26 @@ ul.page-sidebar-menu {
   list-style: none;
   margin: 0;
   padding: 0;
-  margin: 0;
-  padding: 0; 
+}
+
+ul.page-sidebar-menu > li > ul.sub-menu {
+  display: none;
+  list-style: none;
+  clear: both;
+  margin: 8px 0px 8px 0px;
+}
+
+ul.page-sidebar-menu > li.active > ul.sub-menu,
+ul.page-sidebar-menu > li.active > ul.sub-menu > li.active ul.sub-menu {
+  display: block;
+}
+
+ul.page-sidebar-menu > li > ul.sub-menu,
+ul.page-sidebar-menu > li > ul.sub-menu  > li > ul.sub-menu {
+  list-style: none;
+  display: none;
+  clear: both;
+  padding:0;
 }
 
 ul.page-sidebar-menu > li {
@@ -170,17 +185,6 @@ ul.page-sidebar-menu > li > a > .arrow.open:before {
    text-shadow:none;
 }
 
-ul.page-sidebar-menu > li > ul.sub-menu {
-  display: none;
-  list-style: none;
-  clear: both;
-  margin: 8px 0px 8px 0px;
-}
-
-ul.page-sidebar-menu > li.active > ul.sub-menu {
-  display: block;
-}
-
 ul.page-sidebar-menu > li > ul.sub-menu > li {
   background: none;
   margin: 0px;
@@ -192,19 +196,11 @@ ul.page-sidebar-menu > li > ul.sub-menu > li > a {
   display: block;
   margin: 0px 0px 0px 0px;
   padding: 5px 0px;
-  padding-left: 44px !important;
+  padding-left: 35px !important;
   text-decoration: none;
   font-size: 14px;
   font-weight: 300;
   background: none;
-}
-
-/* 3rd level sub menu */
-ul.page-sidebar-menu > li > ul.sub-menu  > li ul.sub-menu {
-  display: none;
-  list-style: none;
-  clear: both;
-  margin: 0px 0px 0px 0px;
 }
 
 ul.page-sidebar-menu > li > ul.sub-menu  li > a > .arrow:before   {  
@@ -233,10 +229,6 @@ ul.page-sidebar-menu > li > ul.sub-menu  li > a > .arrow.open:before {
    text-shadow:none;
 }
 
-ul.page-sidebar-menu > li.active > ul.sub-menu > li.active ul.sub-menu {
-  display: block;
-}
-
 ul.page-sidebar-menu > li > ul.sub-menu > li  ul.sub-menu li {
   background: none;
   margin: 0px;
@@ -246,105 +238,12 @@ ul.page-sidebar-menu > li > ul.sub-menu > li  ul.sub-menu li {
 
 ul.page-sidebar-menu > li > ul.sub-menu  li > ul.sub-menu > li > a {
   display: block;
-  margin: 0px 0px 0px 0px;
-  padding: 5px 0px;
+  margin: 0px;
+  padding: 5px 0px 5px 50px !important;
   text-decoration: none;
   font-size: 14px;
   font-weight: 300;
   background: none;
 }
 
-ul.page-sidebar-menu > li > ul.sub-menu > li > ul.sub-menu > li > a {  
-  padding-left: 60px;
-}
-
-ul.page-sidebar-menu > li > ul.sub-menu > li > ul.sub-menu > li > ul.sub-menu > li > a {  
-  padding-left: 80px;
-}
-
-ul.page-sidebar-menu > li.active > ul.sub-menu > li.active ul.sub-menu > li.active ul.sub-menu {
-  display: block;
-}
-
-
-ul.page-sidebar-menu > li > ul.sub-menu  li > ul.sub-menu > li > a > i {
-  font-size: 13px;
-}
-
-.page-sidebar-closed ul.page-sidebar-menu > li > a .selected {
-  right: -3px !important;
-}
-
-.page-sidebar-closed ul.page-sidebar-menu > li > a > .title,
-.page-sidebar-closed ul.page-sidebar-menu > li > a > .arrow {
-  display: none !important;
-}
-
-.page-sidebar-closed ul.page-sidebar-menu {
-  width: 35px !important;
-}
-
-.page-sidebar-closed ul.page-sidebar-menu > li > a {
-  padding-left: 7px;
-}
-
-.page-sidebar-fixed.page-sidebar-closed ul.page-sidebar-menu > li > a {
-  -webkit-transition: all 0.2s ease;
-     -moz-transition: all 0.2s ease;
-       -o-transition: all 0.2s ease;
-          transition: all 0.2s ease;
-}
-
-.page-sidebar-closed ul.page-sidebar-menu > li:hover {
-  width: 225px !important;
-  position: relative !important;
-  z-index: 2000;
-  display: block !important;
-}
-
-.page-sidebar-closed ul.page-sidebar-menu > li:hover .selected {
-  display: none;
-}
-
-.page-sidebar-closed ul.page-sidebar-menu > li:hover > a > i {
-  margin-right: 10px;
-}
-
-.page-sidebar-closed ul.page-sidebar-menu > li:hover .title {
-  display: inline !important;
-}
-
-.page-sidebar-closed ul.page-sidebar-menu > li > .sub-menu {
-  display: none !important;
-}
-
-.page-sidebar-closed ul.page-sidebar-menu > li:hover > .sub-menu {  
-  width: 189px;
-  position: absolute;
-  z-index: 2000;
-  left: 5px;
-  margin-top: 0;
-  top: 100%;
-  display: block !important;
-}
-
-.page-sidebar-closed ul.page-sidebar-menu > li:hover > .sub-menu > li > .sub-menu,
-.page-sidebar-closed ul.page-sidebar-menu > li:hover > .sub-menu > li > .sub-menu > li > .sub-menu {
-  width: 189px;
-}
-
-/* 2rd level sub menu*/
-.page-sidebar-closed ul.page-sidebar-menu > li:hover > .sub-menu > li > a {
-  padding-left: 15px !important;
-}
-
-/* 3rd level sub menu*/
-.page-sidebar-closed ul.page-sidebar-menu > li > ul.sub-menu > li > .sub-menu > li > a {  
-  padding-left: 30px !important;
-}
-
-/* 4rd level sub menu*/
-.page-sidebar-closed ul.page-sidebar-menu > li > ul.sub-menu > li > .sub-menu > li > .sub-menu > li > a {  
-  padding-left: 45px !important;
-}
 
