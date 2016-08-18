@@ -19,6 +19,8 @@
 	
 	<mvc:default-servlet-handler/>
 	
+	<mvc:resources mapping="/media/**" location="/WEB-INF/media/"/>
+	
 	<context:component-scan base-package="com.justfun.web" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
