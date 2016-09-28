@@ -25,6 +25,11 @@ public class Sorts {
 		int[] e = {15,6,1,2,7,9,3,4,5,10,8,11,14,13,12,18,0};
 		sort.shellSort(e);
 		System.out.println(Arrays.toString(e));
+		
+		int[] f = {15,6,1,2,7,9,3,4,5,10,8,11,14,13,12,18,0};
+		int[] tmp = new int[f.length];
+		sort.mergeSort(f, 0, f.length-1, tmp);
+		System.out.println(Arrays.toString(f));
 	}
 	
 	/**
@@ -142,6 +147,42 @@ public class Sorts {
 				}
 			}
 			step = step/3;
+		}
+	}
+	
+	/**
+	 * 归并排序
+	 * 归并排序采用分治的思想，将一个数组不断的进行拆分，
+	 * 然后将拆分到最小的数组，进行数值合并，合并到临时数组
+	 */
+	public void mergeSort(int[] a, int first, int last, int[] tmp) {
+		if (first < last) {
+			int mid = (first + last)/2;
+			mergeSort(a, first, mid, tmp);
+			mergeSort(a, mid + 1, last, tmp);
+			mergeArray(a, first, mid, last, tmp);
+		}
+	}
+	
+	private void mergeArray(int[] a, int first, int mid, int last, int[] c) {
+		int i = first, j = mid + 1;
+		int m = mid, n = last;
+		int k = 0;
+		while (i <= m && j <= n) {
+			if (a[i] <= a[j]) {
+				c[k++] = a[i++];
+			} else {
+				c[k++] = a[j++];
+			}
+		}
+		while (i <= m) {
+			c[k++] = a[i++];
+		}
+		while (j <= n) {
+			c[k++] = a[j++];
+		}
+		for (i = 0; i < k; i++) {
+			a[first + i] = c[i];
 		}
 	}
 }
