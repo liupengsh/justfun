@@ -26,7 +26,7 @@ public class Sorts {
 		sort.shellSort(e);
 		System.out.println(Arrays.toString(e));
 		
-		int[] f = {15,6,1,2,7,9,3,4,5,10,8,11,14,13,12,18,0};
+		int[] f = {6,1,2,7,9,3,4,5,10,8};
 		int[] tmp = new int[f.length];
 		sort.mergeSort(f, 0, f.length-1, tmp);
 		System.out.println(Arrays.toString(f));
