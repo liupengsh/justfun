@@ -30,6 +30,10 @@ public class Sorts {
 		int[] tmp = new int[f.length];
 		sort.mergeSort(f, 0, f.length-1, tmp);
 		System.out.println(Arrays.toString(f));
+		
+		int[] g = {6,1,2,7,9,3,4,5,10,8};
+		sort.heapSort(g);
+		System.out.println(Arrays.toString(g));
 	}
 	
 	/**
@@ -183,6 +187,69 @@ public class Sorts {
 		}
 		for (i = 0; i < k; i++) {
 			a[first + i] = c[i];
+		}
+	}
+	
+	public void heapSort(int[] a) {
+		int N = a.length - 1;
+		/**
+		 * k=N/2; 就能顾及到2k和2k＋1的元素
+		 * 在下沉过程中，小的下沉，大的就上浮
+		 * 所以k＝1时，下沉后，根节点就是最大的
+		 * 
+		 * 6,1,2,7,9, -- 3,4,5,10,8
+		 *********  sink(a, 4);  
+		 * 6,1,2,7,10, -- 3,4,5,9,8  k=4 j=8   (a[j8]=10 > a[j9] j = 8)  a[k4]=9 < a[j]=40 swap
+		 *********  sink(a, 3);
+		 * 6,1,2,7,10, -- 3,4,5,9,8  k=3 j=6   a[j6]=4 < [j+1]=5  j++ = 7 a[k4]=10 > a[j7] break 
+		 *********  sink(a, 2);
+		 * 6,1,10,7,2, -- 3,4,5,9,8 ( k=2 j=4  a[j4]=10 > [j+1]=3       swap a[2] a[4])
+		 * 6,1,10,7,9, -- 3,4,5,2,8   k=4 j=8  a[j8]=9 > a[j+1]=8 j=8  a[k4]=2 < a[j8]=9 swap
+		 *********  sink(a, 1);
+		 * 6,10,1,7,9, -- 3,4,5,2,8  k=1 j=2     swap
+		 * 6,10,9,7,1, -- 3,4,5,2,8  k=2 j=4     swap
+		 * 6,10,9,7,8, -- 3,4,5,2,1  k=4 j=8     swap
+		 */
+		for (int k = N/2; k >= 1; k--) {
+			sink(a, k, N);
+		}
+		System.out.println("***************" + Arrays.toString(a));
+		/* 
+         * 根节点最大的，和尾结点交换后，此时尾结点就是最大的，N--，尾结点就不需要动了，以此类推 
+         */  
+        while(N>1){  
+        	/**
+        	 * 1. 交换1和N＝9, N-- = 8
+        	 *    从1开始sink，长度限定为8
+        	 *    
+        	 * 第一个不断的进行和最后一个的sink
+        	 */
+            exch(a, 1, N--);
+            System.out.println("        交换后：" + Arrays.toString(a));
+            sink(a, 1, N); 
+            System.out.println("=========" + Arrays.toString(a));
+        }
+	}
+	
+	private void exch(int[] pq,int i, int j) {  
+        int t = pq[i];  
+        pq[i] = pq[j];  
+        pq[j] = t;  
+    }
+	
+	private void sink(int[] a, int k, int N) {
+		while (2*k <= N) {
+			int j = 2*k;
+			if (j < N && a[j] < a[j+1]) {
+				j++;
+			}
+			if (a[k] >= a[j]) {
+				break;
+			}
+			int tmp = a[k];
+			a[k] = a[j];
+			a[j] = tmp;
+			k = j;
 		}
 	}
 }
