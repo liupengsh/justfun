@@ -71,6 +71,5 @@ public class NotifyMissed {
 		print("about to invoke interrupt() on threadA");
 		
 		threadA.interrupt();
-		
 	}
 }
