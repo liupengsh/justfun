@@ -2,7 +2,7 @@ package com.justfun.concurrent;
 
 public class MyThreadImplRunnable implements Runnable {
 
-	private int ticket = 5;
+	private volatile int  ticket = 5;
 	
 	@Override
 	public void run() {
