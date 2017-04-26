@@ -11,9 +11,9 @@ public class ConnectionPoolTest {
 	static CountDownLatch end;
 	
 	public static void main(String[] args) throws InterruptedException {
-		int threadCount = 10;
+		int threadCount = 100;
 		end = new CountDownLatch(threadCount);
-		int count = 20;
+		int count = 200;
 		AtomicInteger got = new AtomicInteger();
 		AtomicInteger notGot = new AtomicInteger();
 		for (int i = 0; i < threadCount; i ++) {

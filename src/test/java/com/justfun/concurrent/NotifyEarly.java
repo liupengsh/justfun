@@ -14,7 +14,7 @@ public class NotifyEarly {
 	public String removeItem() throws InterruptedException {
 		print("in removeItem() - entering");
 		synchronized (list) {
-			if (list.isEmpty()) { // 这里用if语句会发生危险    -----更换为while之后便不报错
+			while (list.isEmpty()) { // 这里用if语句会发生危险    -----更换为while之后便不报错
 				print("in removeItem() - about to wait()");
 				list.wait();
 				print("in removeItem() - done with wait()");
@@ -69,15 +69,15 @@ public class NotifyEarly {
 			threadA1.start();
 			Thread.sleep(500);
 			// 启动第二个删除元素的线程
-			Thread threadA2 = new Thread(runA, "threadA2");
-			threadA2.start();
-			Thread.sleep(500);
+//			Thread threadA2 = new Thread(runA, "threadA2");
+//			threadA2.start();
+//			Thread.sleep(500);
 			// 启动增加元素的线程
 			Thread threadB = new Thread(runB, "threadB");
 			threadB.start();
 			Thread.sleep(10000); // wait 10 seconds
 			threadA1.interrupt();
-			threadA2.interrupt();
+//			threadA2.interrupt();
 		} catch (InterruptedException x) {
 		}
 	}
