@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.justfun.dao.ArticleDao" >
+
+  <resultMap id="BaseResultMap" type="com.justfun.model.Article" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="author" property="user" jdbcType="VARCHAR" />
+    <result column="now" property="now" jdbcType="BIGINT" />
+    <result column="votes" property="votes" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, title, link, author, now, votes, create_time
+  </sql>
+  
+  <insert id="insert" parameterType="com.justfun.model.Article" >
+    insert into t_article (id, title, link, author, now, votes)
+    values (#{article.id,jdbcType=BIGINT}, #{article.title,jdbcType=VARCHAR}, #{article.link,jdbcType=VARCHAR}, 
+      #{article.author,jdbcType=VARCHAR}, #{article.now,jdbcType=BIGINT}, #{article.votes,jdbcType=INTEGER})
+  </insert>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_article
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <update id="vote">
+    update t_article
+    set votes = #{votes,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_article
+    order by now desc
+  </select>
+</mapper>

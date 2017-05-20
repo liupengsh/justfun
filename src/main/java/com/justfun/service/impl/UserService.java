@@ -2,6 +2,7 @@ package com.justfun.service.impl;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.justfun.dao.UserDao;
@@ -11,6 +12,8 @@ import com.justfun.service.IUserService;
 @Service("userService")
 public class UserService implements IUserService {
 
+	private Logger logger = Logger.getLogger(UserService.class);
+	
 	@Resource  
     private UserDao userDao;
 	
@@ -21,6 +24,7 @@ public class UserService implements IUserService {
 
 	@Override
 	public User findUserByUserName(String userName) {
+		logger.info("findUserByUserName:" + userName);
 		return userDao.findUserByUserName(userName);
 	}
 
