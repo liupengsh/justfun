@@ -1,4 +1,4 @@
-package com.justfun.thread.demo;
+package com.justfun.concurrent.basic;
 
 public class FireFlag {
 	private volatile boolean fired = false;
