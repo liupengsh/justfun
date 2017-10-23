@@ -13,16 +13,14 @@ public class WaitThreadAgain extends Thread {
     public void run() {
         try {
             lock.lock();
-            try {
-                while (!fire) {
-                    condition.await();
-                }
-            } finally {
-                lock.unlock();
+            while (!fire) {
+                condition.await();
             }
             System.out.println("fired");
         } catch (InterruptedException e) {
             Thread.interrupted();
+        } finally {
+            lock.unlock();
         }
     }
 

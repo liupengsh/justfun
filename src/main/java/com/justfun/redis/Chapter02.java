@@ -8,6 +8,17 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
 
+/**
+ * 登录表 login:用hash实现
+ * 		"login:" token username
+ * 最近登录表 recent: 用zset实现
+ * 		"recent:" timestamp token
+ * 浏览表viewed: 用zset实现
+ *		"viewed:token" timestamp item
+ * 购物车实现 用hashmap实现
+ *      "cart:session" item count
+ *
+ */
 public class Chapter02 {
     public static final void main(String[] args)
         throws InterruptedException
@@ -22,9 +33,9 @@ public class Chapter02 {
         conn.select(15);
 
         testLoginCookies(conn);
-        testShopppingCartCookies(conn);
-        testCacheRows(conn);
-        testCacheRequest(conn);
+//        testShopppingCartCookies(conn);
+//        testCacheRows(conn);
+//        testCacheRequest(conn);
     }
 
     public void testLoginCookies(Jedis conn)
@@ -185,7 +196,9 @@ public class Chapter02 {
         conn.zadd("recent:", timestamp, token);
         if (item != null) {
             conn.zadd("viewed:" + token, timestamp, item);
+            // 删除指定区间内的元素
             conn.zremrangeByRank("viewed:" + token, 0, -26);
+            // If key does not exist a new sorted set with the specified member as sole member is crated
             conn.zincrby("viewed:", -1, item);
         }
     }

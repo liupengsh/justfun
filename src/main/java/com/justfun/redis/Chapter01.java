@@ -6,6 +6,20 @@ import redis.clients.jedis.ZParams;
 
 import java.util.*;
 
+/**
+ * 一个文章对象，对应一个hashmap
+ * 			article:articleId  hashmap
+ * 一个文章对象，对应一个voted明细表-用set实现，key为 voted:articleId，值为     
+ * 			"voted:articleId"   set(存放投票用户名)
+ * 所有文章的score, 需要排序，保存在 zset中,zset中的值为
+ * 			"score:"  article:id  score
+ * 			"score:"  article:id  score
+ * 所有文章的time，需要排序，保存在 zset中，zset中的值为
+ * 			"time:" article:id  time
+ * 文章分组表，用set实现，值为
+ * 			"group:groupName" set(article:id)
+ * 			
+ */
 public class Chapter01 {
     private static final int ONE_WEEK_IN_SECONDS = 7 * 86400;
     private static final int VOTE_SCORE = 432;
@@ -19,9 +33,9 @@ public class Chapter01 {
         Jedis conn = new Jedis("localhost");
         conn.select(15);
 
-//        String articleId = postArticle(conn, "username", "A title", "http://www.google.com");
+        String articleId = postArticle(conn, "username", "baidu", "http://www.baidu.com");
         
-        String articleId = "1";
+//        String articleId = "1";
         System.out.println("We posted a new article with id: " + articleId);
         System.out.println("Its HASH looks like:");
         Map<String,String> articleData = conn.hgetAll("article:" + articleId);

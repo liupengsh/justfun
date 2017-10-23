@@ -21,18 +21,26 @@ public class RaceAndRecordAgain2 implements Runnable {
 	
 	@Override
 	public void run() {
+		String racerName = Thread.currentThread().getName();
 		try {
 			fire.waitFire();
-			Thread.sleep(new Random().nextInt(20) * 1000);
+			Thread.sleep(new Random().nextInt(50) * 1000);
 			
-			String racerName = Thread.currentThread().getName();
 			System.out.println(racerName + "到达终点");
 			SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			records.put(racerName, sf.format(new Date()));
 			
 			cb.await();
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			records.put(racerName, "考试出异常状况，无成绩");
+			try {
+				cb.await();
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			} catch (BrokenBarrierException e1) {
+				e1.printStackTrace();
+			}
+			Thread.currentThread().interrupt();
 		} catch (BrokenBarrierException e) {
 			e.printStackTrace();
 		}
@@ -63,7 +71,7 @@ public class RaceAndRecordAgain2 implements Runnable {
 	}
 	
 	public static void main(String[] args) throws InterruptedException {
-		int raceNum = 10;
+		int raceNum = 5;
 		Fire fire = new Fire();
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		CyclicBarrier cb = new CyclicBarrier(raceNum, new Runnable() {
@@ -74,10 +82,13 @@ public class RaceAndRecordAgain2 implements Runnable {
 			}
 		});
 		
-		Thread[] racers = new Thread[10];
+		Thread[] racers = new Thread[raceNum];
 		for (int i = 0; i < raceNum; i++) {
 			racers[i] = new Thread(new RaceAndRecordAgain2(fire, cb));
 			racers[i].start();
+			if (i == 3) {
+				racers[i].interrupt();
+			}
 		}
 		
 		Thread.sleep(1000);
